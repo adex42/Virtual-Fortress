@@ -57,7 +57,7 @@ Registering a new user
 
 ![image](https://github.com/adex42/Virtual-Fortress/assets/87116411/97c55db4-07ab-4c12-b69d-5207618bb3c0)
 
-                                          Logging In
+Logging In
 
 ![image](https://github.com/adex42/Virtual-Fortress/assets/87116411/6df85952-c9b3-45c5-a2fd-71a854a28fae)
 
@@ -74,6 +74,15 @@ Scanning devices in am IP range
 ![image](https://github.com/adex42/Virtual-Fortress/assets/87116411/b618b0ad-a5b5-4d26-ad20-16454671f806)
 
 Generated report
+
+
+
+## Authors
+
+- [@adex42](https://www.github.com/adex42)
+
+- [@IshaanSingh2002](https://github.com/IshaanSingh2002)
+
 
 
 
