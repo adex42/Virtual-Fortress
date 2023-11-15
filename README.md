@@ -3,6 +3,13 @@
 
 The VirtualFortress project is dedicated to providing a robust and user-friendly solution for ensuring the security and integrity of both physical and virtual computing systems. In today's rapidly evolving digital landscape, cybersecurity is of paramount importance, and our application aims to address this concern by offering comprehensive vulnerability scanning and reporting capabilities.
 
+## Authors
+
+- [@adex42](https://www.github.com/adex42)
+
+- [@IshaanSingh2002](https://github.com/IshaanSingh2002)
+
+
 ## Objective
 Our primary objective is to empower organizations and individuals with the tools to proactively identify and mitigate potential security threats within their computer networks and systems. Leveraging advanced scanning algorithms and established security standards, our system can assess configurations, check for compliance with best practices, and pinpoint potential vulnerabilities.
 
@@ -75,13 +82,6 @@ Scanning devices in am IP range
 
 Generated report
 
-
-
-## Authors
-
-- [@adex42](https://www.github.com/adex42)
-
-- [@IshaanSingh2002](https://github.com/IshaanSingh2002)
 
 
 
