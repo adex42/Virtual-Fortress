@@ -1,0 +1,50 @@
+Ensure Automatic Error Reporting is not enabled|||#dpkg-query -s apport > /dev/null 2>&1 && grep -Psi -- '^\h*enabled\h*=\h*[^0]\b' /etc/default/apport
+Ensure audit configuration files are 640 or more restrictive|||#find /etc/audit/ -type f \( -name '*.conf' -o -name '*.rules' \) -exec stat -Lc "%n %a" {} + | grep -Pv -- '^\h*\H+\h*([0,2,4,6][0,4]0)\h*$'
+Ensure audit configuration files belong to group root|||#find /etc/audit/ -type f \( -name '*.conf' -o -name '*.rules' \) ! -group root
+Ensure audit configuration files are owned by root|||#find /etc/audit/ -type f \( -name '*.conf' -o -name '*.rules' \) ! -user root
+Ensure local login warning banner is configured properly|||grep -E -i "(\\\v|\\\r|\\\m|\\\s|$(grep '^ID=' /etc/os-release | cut -d= - f2 | sed -e 's/"//g'))" /etc/issue
+Ensure remote login warning banner is configured properly|||grep -E -i "(\\\v|\\\r|\\\m|\\\s|$(grep '^ID=' /etc/os-release | cut -d= - f2 | sed -e 's/"//g'))" /etc/issue.net
+Ensure XDCMP is not enabled|||grep -Eis '^\s*Enable\s*=\s*true' /etc/gdm3/custom.conf
+Ensure AppArmor is enabled in the bootloader configuration|||grep "^\s*linux" /boot/grub/grub.cfg | grep -v "apparmor=1" ; # grep "^\s*linux" /boot/grub/grub.cfg | grep -v "security=apparmor"
+Ensure chrony is running as user _chrony|||ps -ef | awk '(/[c]hronyd/ && $1!="_chrony") { print $1 }'
+Ensure ntp is running as user ntp|||ps -ef | awk '(/[n]tpd/ && $1!="ntp") { print $1 }'
+Ensure mail transfer agent is configured for local-only mode|||ss -lntu | grep -E ':25\s' | grep -E -v '\s(127.0.0.1|::1):25\s'
+Ensure audit tools belong to group root|||stat -c "%n %a %U %G" /sbin/auditctl /sbin/aureport /sbin/ausearch /sbin/autrace /sbin/auditd /sbin/augenrules | grep -Pv -- '^\h*\H+\h+([0-7][0,1,4,5][0,1,4,5])\h+root\h+root\h*$'
+Ensure audit tools are 755 or more restrictive|||stat -c "%n %a" /sbin/auditctl /sbin/aureport /sbin/ausearch /sbin/autrace /sbin/auditd /sbin/augenrules | grep -Pv -- '^\h*\H+\h+([0-7][0,1,4,5][0,1,4,5])\h*$'
+Ensure audit tools are owned by root|||stat -c "%n %U" /sbin/auditctl /sbin/aureport /sbin/ausearch /sbin/autrace /sbin/auditd /sbin/augenrules | grep -Pv -- '^\h*\H+\h+root\h*$'
+Ensure audit log files are mode 0640 or less permissive|||stat -Lc "%n %a" "$(dirname $( awk -F"=" '/^\s*log_file\s*=\s*/ {print $2}' /etc/audit/auditd.conf | xargs))"/* | grep -v '[0,2,4,6][0,4]0'
+Ensure the audit log directory is 0750 or more restrictive|||stat -Lc "%n %a" "$(dirname $( awk -F"=" '/^\s*log_file\s*=\s*/ {print $2}' /etc/audit/auditd.conf))" | grep -Pv -- '^\h*\H+\h+([0,5,7][0,5]0)'
+Ensure only authorized users own audit log files|||stat -Lc "%n %U" "$(dirname $(awk -F"=" '/^\s*log_file\s*=\s*/ {print $2}' /etc/audit/auditd.conf | xargs))"/* | grep -Pv -- '^\H+\h+root\b'
+Ensure message of the day is configured properly|||#grep -Eis "(\\\v|\\\r|\\\m|\\\s|$(grep '^ID=' /etc/os-release | cut -d= -f2 | sed -e 's/"//g'))" /etc/motd
+Ensure X Window System is not installed|||dpkg-query -W -f='${binary:Package}\t${Status}\t${db:Status-Status}\n' xserver-xorg* | grep -Pi '\h+installed\b'
+Ensure shadow group is empty|||awk -F: '($1=="shadow") {print $NF}' /etc/group # awk -F: -v GID="$(awk -F: '($1=="shadow") {print $3}' /etc/group)" '($4==GID) {print $1}' /etc/passwd
+Ensure accounts in /etc/passwd use shadowed passwords|||awk -F: '($2 != "x" ) { print $1 " is not set to shadowed passwords "}' /etc/passwd
+Ensure /etc/shadow password fields are not empty|||awk -F: '($2 == "" ) { print $1 " does not have a password "}' /etc/shadow
+Ensure all users last password change date is in the past|||awk -F: '/^[^:]+:[^!*]/{print $1}' /etc/shadow | while read -r usr; \ do change=$(date -d "$(chage --list $usr | grep '^Last password change' | cut -d: -f2 | grep -v 'never$')" +%s); \ if [[ "$change" -gt "$(date +%s)" ]]; then \ echo "User: \"$usr\" last password change was \"$(chage --list $usr | grep '^Last password change' | cut -d: -f2)\""; fi; done
+Ensure system accounts are secured|||awk -F: '$1!~/(root|sync|shutdown|halt|^\+)/ && $3<'"$(awk '/^\s*UID_MIN/{print $2}' /etc/login.defs)"' && $7!~/((\/usr)?\/sbin\/nologin)/ && $7!~/(\/bin)?\/false/ {print}' /etc/passwd # awk -F: '($1!~/(root|^\+)/ && $3<'"$(awk '/^\s*UID_MIN/{print $2}' /etc/login.defs)"') {print $1}' /etc/passwd | xargs -I '{}' passwd -S '{}' | awk '($2!~/LK?/) {print $1}'
+Ensure no ungrouped files or directories exist|||df --local -P | awk '{if (NR!=1) print $6}' | xargs -I '{}' find '{}' -xdev -nogroup
+Ensure no world writable files exis|||df --local -P | awk '{if (NR!=1) print $6}' | xargs -I '{}' find '{}' -xdev -type f -perm -0002
+Ensure no unowned files or directories exist|||df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -nouser
+Ensure SSH AllowTcpForwarding is disabled|||grep -Ei '^\s*AllowTcpForwarding\s+yes' /etc/ssh/sshd_config
+Ensure SSH HostbasedAuthentication is disabled|||grep -Ei '^\s*HostbasedAuthentication\s+yes' /etc/ssh/sshd_config
+Ensure SSH IgnoreRhosts is enabled|||grep -Ei '^\s*ignorerhosts\s+no\b' /etc/ssh/sshd_config
+Ensure SSH LoginGraceTime is set to one minute or less|||grep -Ei '^\s*LoginGraceTime\s+(0|6[1-9]|[7-9][0-9]|[1-9][0-9][0-9]+|[^1]m)' /etc/ssh/sshd_config
+Ensure SSH MaxAuthTries is set to 4 or less|||grep -Ei '^\s*maxauthtries\s+([5-9]|[1-9][0-9]+)' /etc/ssh/sshd_config
+Ensure SSH PermitEmptyPasswords is disabled|||grep -Ei '^\s*PermitEmptyPasswords\s+yes' /etc/ssh/sshd_config
+Ensure SSH PermitUserEnvironment is disabled|||grep -Ei '^\s*PermitUserEnvironment\s+yes' /etc/ssh/sshd_config
+Ensure SSH PAM is enabled|||grep -Ei '^\s*UsePAM\s+no' /etc/ssh/sshd_config
+Ensure SSH X11 forwarding is disabled|||grep -Ei '^\s*x11forwarding\s+yes' /etc/ssh/sshd_config
+Ensure SSH LogLevel is appropriate|||grep -i 'loglevel' /etc/ssh/sshd_config | grep -Evi '(VERBOSE|INFO)'
+Ensure users must provide password for privilege escalation|||#grep -r "^[^#].*NOPASSWD" /etc/sudoers*
+Ensure rsyslog is not configured to receive logs from a remote client|||grep '$ModLoad imtcp' /etc/rsyslog.conf /etc/rsyslog.d/*.conf # grep '$InputTCPServerRun' /etc/rsyslog.conf /etc/rsyslog.d/*.conf
+Ensure no duplicate group names exist|||#!/bin/bash cut -d: -f1 /etc/group | sort | uniq -d | while read -r x; do echo "Duplicate group name $x in /etc/group" done
+Ensure no duplicate user names exis|||#!/bin/bash cut -d: -f1 /etc/passwd | sort | uniq -d | while read -r x; do echo "Duplicate login name $x in /etc/passwd" done
+Ensure no duplicate GIDs exist|||#!/bin/bash cut -d: -f3 /etc/group | sort | uniq -d | while read x ; do echo "Duplicate GID ($x) in /etc/group" done
+Ensure no duplicate UIDs exist|||#!/bin/bash cut -f3 -d":" /etc/passwd | sort -n | uniq -c | while read x ; do [ -z "$x" ] && break set - $x if [ $1 -gt 1 ]; then users=$(awk -F: '($3 == n) { print $1 }' n=$2 /etc/passwd | xargs) echo "Duplicate UID ($2): $users" fi done
+Ensure all groups in /etc/passwd exist in /etc/group|||#!/bin/bash for i in $(cut -s -d: -f4 /etc/passwd | sort -u ); do grep -q -P "^.*?:[^:]*:$i:" /etc/group if [ $? -ne 0 ]; then echo "Group $i is referenced by /etc/passwd but does not exist in /etc/group" fi done
+Ensure root PATH Integrity|||#!/bin/bash RPCV="$(sudo -Hiu root env | grep '^PATH' | cut -d= -f2)" echo "$RPCV" | grep -q "::" && echo "root's path contains a empty directory (::)" echo "$RPCV" | grep -q ":$" && echo "root's path contains a trailing (:)" for x in $(echo "$RPCV" | tr ":" " "); do if [ -d "$x" ]; then ls -ldH "$x" | awk '$9 == "." {print "PATH contains current working directory (.)"} $3 != "root" {print $9, "is not owned by root"} substr($1,6,1) != "-" {print $9, "is group writable"} substr($1,9,1) != "-" {print $9, "is world writable"}' else echo "$x is not a directory" fi done
+Ensure no local interactive user has .forward files|||#!/usr/bin/env bash { output="" fname=".forward" valid_shells="^($( sed -rn '/^\//{s,/,\\\\/,g;p}' /etc/shells | paste -s -d '|' - ))$" awk -v pat="$valid_shells" -F: '$(NF) ~ pat { print $1 " " $(NF-1) }' /etc/passwd | (while read -r user home; do [ -f "$home/$fname" ] && output="$output\n - User \"$user\" file: \"$home/$fname\" exists" done if [ -z "$output" ]; then echo -e "\n-PASSED: - No local interactive users have \"$fname\" files in their home directory\n" else echo -e "\n- FAILED:\n$output\n" fi ) }
+Ensure SSH MaxSessions is set to 10 or less|||grep -Ei '^\s*MaxSessions\s+(1[1-9]|[2-9][0-9]|[1-9][0-9][0-9]+)' /etc/ssh/sshd_config
+Ensure audit_backlog_limit is sufficient|||find /boot -type f -name 'grub.cfg' -exec grep -Ph -- '^\h*linux' {} + | grep -Pv 'audit_backlog_limit=\d+\b'
+Ensure auditing for processes that start prior to auditd is enabled|||find /boot -type f -name 'grub.cfg' -exec grep -Ph -- '^\h*linux' {} + | grep -v 'audit=1'
+Ensure a nftables table exists|||nft list tabless

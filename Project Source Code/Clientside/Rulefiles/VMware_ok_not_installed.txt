@@ -1,0 +1,42 @@
+Ensure DCUI is disabled|||Get-VMHost | Get-VMHostService | Where { $_.key -eq "DCUI" }
+Ensure the ESXi shell is disabled|||Get-VMHost | Get-VMHostService | Where { $_.key -eq "TSM" } | Select VMHost, Key, Label, Policy, Running, Required
+Ensure SSH is disabled|||Get-VMHost | Get-VMHostService | Where { $_.key -eq "TSM-SSH" } | Select VMHost, Key, Label, Policy, Running, Required
+Ensure port-level configuration overrides are disabled|||Get-VDPortgroup | Get-VDPortgroupOverridePolicy
+Ensure unnecessary floppy devices are disconnected|||Get-VM | Get-FloppyDrive | Select Parent, Name, ConnectionState
+Ensure unnecessary CD/DVD devices are disconnected|||Get-VM | Get-CDDrive
+Ensure unnecessary parallel ports are disconnected|||Get-VM | Get-ParallelPort
+Ensure unnecessary serial ports are disconnected|||Get-VM | Get-SerialPort
+Ensure unnecessary USB devices are disconnected|||Get-VM | Get-USBDevice
+Ensure unauthorized modification and disconnection of devices is disabled|||Get-VM | Get-AdvancedSetting -Name "isolation.device.edit.disable" | Select Entity, Name, Value
+Ensure unauthorized connection of devices is disabled|||Get-VM | Get-AdvancedSetting -Name "isolation.device.connectable.disable" | Select Entity, Name, Value
+Ensure PCI and PCIe device passthrough is disabled|||Get-VM | Get-AdvancedSetting -Name "pciPassthru*.present" | Select Entity, Name, Value
+Ensure Autologon is disabled|||Get-VM | Get-AdvancedSetting -Name "isolation.tools.ghi.autologon.disable"| Select Entity, Name, Value
+Ensure BIOS BBS is disabled|||Get-VM | Get-AdvancedSetting -Name "isolation.bios.bbs.disable"| Select Entity, Name, Value
+Ensure Guest Host Interaction Protocol Handler is set to disabled|||Get-VM | Get-AdvancedSetting -Name "isolation.tools.ghi.protocolhandler.info.disable" | Select Entity, Name, Value
+Ensure Unity Taskbar is disabled|||Get-VM | Get-AdvancedSetting -Name "isolation.tools.unity.taskbar.disable" | Select Entity, Name, Value
+Ensure Unity Active is disabled|||Get-VM | Get-AdvancedSetting -Name "isolation.tools.unityActive.disable" | Select Entity, Name, Value
+Ensure Unity Window Contents is disabled|||Get-VM | Get-AdvancedSetting -Name "isolation.tools.unity.windowContents.disable" | Select Entity, Name, Value
+Ensure Unity Push Update is disabled|||Get-VM | Get-AdvancedSetting -Name "isolation.tools.unity.push.update.disable" | Select Entity, Name, Value
+Ensure Drag and Drop Version Get is disabled|||Get-VM | Get-AdvancedSetting -Name "isolation.tools.vmxDnDVersionGet.disable"| Select Entity, Name, Value
+Ensure Drag and Drop Version Set is disabled|||Get-VM | Get-AdvancedSetting -Name "isolation.tools.guestDnDVersionSet.disable"| Select Entity, Name, Value
+Ensure Shell Action is disabled|||Get-VM | Get-AdvancedSetting -Name "isolation.ghi.host.shellAction.disable" | Select Entity, Name, Value
+Ensure Request Disk Topology is disabled|||Get-VM | Get-AdvancedSetting -Name "isolation.tools.dispTopoRequest.disable"| Select Entity, Name, Value
+Ensure Trash Folder State is disabled|||Get-VM | Get-AdvancedSetting -Name "isolation.tools.trashFolderState.disable"| Select Entity, Name, Value
+Ensure Guest Host Interaction Tray Icon is disabled|||Get-VM | Get-AdvancedSetting -Name "isolation.tools.ghi.trayicon.disable"| Select Entity, Name, Value
+Ensure Unity is disabled|||Get-VM | Get-AdvancedSetting -Name "isolation.tools.unity.disable"| Select Entity, Name, Value
+Ensure Unity Interlock is disabled|||Get-VM | Get-AdvancedSetting -Name "isolation.tools.unityInterlockOperation.disable"| Select Entity, Name, Value
+Ensure GetCreds is disabled|||Get-VM | Get-AdvancedSetting -Name "isolation.tools.getCreds.disable"| Select Entity, Name, Value
+Ensure Host Guest File System Server is disabled|||Get-VM | Get-AdvancedSetting -Name "isolation.tools.hgfsServerSet.disable"| Select Entity, Name, Value
+Ensure Guest Host Interaction Launch Menu is disabled|||Get-VM | Get-AdvancedSetting -Name "isolation.tools.ghi.launchmenu.change" | Select Entity, Name, Value
+Ensure memSchedFakeSampleStats is disabled|||Get-VM | Get-AdvancedSetting -Name "isolation.tools.memSchedFakeSampleStats.disable" | Select Entity, Name, Value
+Ensure VM Console Copy operations are disabled|||Get-VM | Get-AdvancedSetting -Name "isolation.tools.copy.disable" | Select Entity, Name, Value
+Ensure VM Console Drag and Drop operations is disabled|||Get-VM | Get-AdvancedSetting -Name "isolation.tools.dnd.disable" | Select Entity, Name, Value
+Ensure VM Console GUI Options is disabled|||Get-VM | Get-AdvancedSetting -Name "isolation.tools.setGUIOptions.enable"| Select Entity, Name, Value
+Ensure VM Console Paste operations are disabled|||Get-VM | Get-AdvancedSetting -Name "isolation.tools.paste.disable"| Select Entity, Name, Value
+Ensure access to VM console via VNC protocol is limited|||Get-VM | Get-AdvancedSetting -Name "RemoteDisplay.vnc.enabled" | Select Entity, Name, Value
+Ensure hardware-based 3D acceleration is disabled|||Get-VM | Get-AdvancedSetting -Name "mks.enable3d"| Select Entity, Name, Value
+Ensure nonpersistent disks are limited|||Get-VM | Get-HardDisk | Select Parent, Name, Filename, DiskType, Persistence
+Ensure virtual disk shrinking is disabled|||Get-VM | Get-AdvancedSetting -Name "isolation.tools.diskShrink.disable"| Select Entity, Name, Value
+Ensure virtual disk wiping is disabled|||Get-VM | Get-AdvancedSetting -Name "isolation.tools.diskWiper.disable"| Select Entity, Name, Value
+Ensure VIX messages from the VM are disabled|||Get-VM | Get-AdvancedSetting -Name "isolation.tools.vixMessage.disable"| Select Entity, Name, Value
+Ensure host information is not sent to guests|||Get-VM | Get-AdvancedSetting -Name "tools.guestlib.enableHostInfo"| Select Entity, Name, Value

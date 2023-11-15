@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body style="background-color : #2f2b33">
+    <nav class="navbar navbar-expand-lg navbar navbar-dark bg-primary">
+        <a class="navbar-brand" href="/dashboard"  style = 'padding-inline: 50px'><img src="/static/images/logo.png" height="10%" width="20%" style="margin: 0%;"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <!-- <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+            </ul> -->
+            <a href="/register" class="btn btn-danger" style="margin-left: 85%;">Logout</a>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar">
+                <div class="position-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/dashboard" style = 'margin: 20% '>
+                                Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/singlescan" style = 'margin: 20%'>
+                                Single Scan
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/multiscan" style = 'margin-top: 10%;margin-left: 20%;margin-right:20% ;'>
+                                Multi Scan 
+                            </a>
+                        </li>
+                        <!-- <li class="nav-item" >
+                            <a class="nav-link" href="#" style = 'margin: 20%'>
+                                Settings
+                            </a>
+                        </li> -->
+                    </ul>
+                </div>
+            </nav>
+
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 text-light">
+                <p >
+                    <br>
+                   <h1> Welcome to Virtual Fortress!</h1>
+
+<p>We are thrilled to have you here on our landing page. Virtual Fortress is your go-to system hardening checker app, designed to ensure the security and integrity of your digital fortress.
+
+<p>In today's interconnected world, protecting your systems from potential threats is of utmost importance. With Virtual Fortress, you can rest assured that your defenses are strong and impenetrable. Our app provides a comprehensive analysis of your system's vulnerabilities, offering valuable insights and recommendations to fortify your digital infrastructure.</p>
+
+<p>Whether you are an individual, a small business, or a large enterprise, Virtual Fortress caters to your specific needs. Our user-friendly interface makes it easy for anyone to navigate and understand the security status of their systems. With just a few clicks, you can scan your network, identify potential weaknesses, and take proactive measures to safeguard your data.</p>
+
+<p>At Virtual Fortress, we prioritize your privacy and security. We adhere to the highest industry standards to ensure that your information remains confidential and protected. Our team of experts is constantly updating our app with the latest security measures, staying one step ahead of potential threats.</p>
+
+<p>Join us on this journey to fortify your digital fortress. Together, we can create a safer and more secure online environment. Explore Virtual Fortress today and experience the peace of mind that comes with knowing your systems are fortified against any potential intrusions.</p>
+
+<p>Thank you for choosing Virtual Fortress. We are excited to have you on board!</p>
+
+<p>Best regards,
+The Virtual Fortress Team
+</p>
+                </p>
+            </main>
+        </div>
+    </div>
+
+    <style>
+        #sidebar {
+            height: 100vh;
+        }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-d7I8HV5z05zC0+8rZ0krFckCbbHlKCMwQ8Drz5gS6f24Zu5r5CeR3dK8CpSkkkP4"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

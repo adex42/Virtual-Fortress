@@ -1,0 +1,3 @@
+Ensure authentication required for single user mode|||grep -Eq '^root:\$[0-9]' /etc/shadow && echo "Failed"
+Disable Automounting|||systemctl is-enabled autofs
+Ensure filesystem integrity is regularly checked|||systemctl is-enabled aidecheck.service

@@ -1,0 +1,18 @@
+Ensure permissions on /etc/issue are configured|||stat -L /etc/issue
+Ensure permissions on /etc/issue.net are configured|||stat -L /etc/issue.net
+Ensure permissions on bootloader config are configured|||stat /boot/grub/grub.cfg
+Ensure permissions on /etc/cron.d are configured|||stat /etc/cron.d/
+Ensure permissions on /etc/cron.daily are configured|||stat /etc/cron.daily/
+Ensure permissions on /etc/cron.hourly are configured|||stat /etc/cron.hourly/
+Ensure permissions on /etc/cron.monthly are configured|||stat /etc/cron.monthly/
+Ensure permissions on /etc/cron.weekly are configured|||stat /etc/cron.weekly/
+Ensure permissions on /etc/crontab are configured|||stat /etc/crontab
+Ensure permissions on /etc/group are configured|||stat /etc/group
+Ensure permissions on /etc/group- are configured|||stat /etc/group-
+Ensure permissions on /etc/gshadow are configured|||stat /etc/gshadow
+Ensure permissions on /etc/gshadow- are configured|||stat /etc/gshadow-
+Ensure permissions on /etc/passwd are configured|||stat /etc/passwd
+Ensure permissions on /etc/passwd- are configured|||stat /etc/passwd-
+Ensure permissions on /etc/shadow are configured|||stat /etc/shadow
+Ensure permissions on /etc/shadow- are configured|||stat /etc/shadow-
+Ensure permissions on /etc/ssh/sshd_config are configured|||stat /etc/ssh/sshd_config

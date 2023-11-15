@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Single Scan</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body style="background-color : #2f2b33">
+    <nav class="navbar navbar-expand-lg navbar navbar-dark bg-primary">
+        <a class="navbar-brand" href="/dashboard" style='padding-inline: 50px'><img src="/static/images/logo.png"
+                height="10%" width="20%" style="margin: 0%;"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <!-- <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+            </ul> -->
+            <a href="/login" class="btn btn-danger" style="margin-left: 85%;">Logout</a>
+        </div>
+    </nav>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar">
+                <div class="position-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/dashboard" style='margin: 20% '>
+                                Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/singlescan" style='margin: 20%'>
+                                Single Scan
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/multiscan"
+                                style='margin-top: 10%;margin-left: 20%;margin-right:20% ;'>
+                                Multi Scan
+                            </a>
+                        </li>
+                        <!-- <li class="nav-item" >
+                            <a class="nav-link" href="#" style = 'margin: 20%'>
+                                Settings
+                            </a>
+                        </li> -->
+                    </ul>
+                </div>
+            </nav>
+
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div class="container text-light">
+                    <div class="row justify-content-center">
+                        <div class="col-sm-8">
+                            <br>
+                            <br>
+                            <h2>Virtual Fortress Single Scan</h2>
+                            <form action="/singlescan" method="POST">
+                                <label for="ip">IP : </label> <br><br>
+                                <input type="text" class="form-control" id="ip" placeholder="Enter IP" name="ip"><br>
+                                <button type="submit" class="btn btn-primary">Start Scan</button>
+                            </form>
+                            <br><br>For single scan:<br>
+1) Enter the IP address of the target machine whose hardening level needs to be checked to ensure security of systems.<br>
+2) Start the scan after providing the respective IP address to the tool.<br>
+3) Open the shell to enter the encryption key which ensures end-to-end privacy between all stations.<br>
+4) Executing the commands in the shell of the target system takes time. This includes complete and secure execution of all said shell commands.<br>
+5) The report of the findings of VirtualFortress is displayed in the form of an HTML report which helps in visualizing what went wrong. This report can be found in the source folder after completion of the scan<br>
+                        </div>
+                    </div>
+
+            </main>
+        </div>
+    </div>
+
+    <style>
+        #sidebar {
+            height: 100vh;
+        }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-d7I8HV5z05zC0+8rZ0krFckCbbHlKCMwQ8Drz5gS6f24Zu5r5CeR3dK8CpSkkkP4"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

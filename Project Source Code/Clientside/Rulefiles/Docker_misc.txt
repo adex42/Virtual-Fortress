@@ -1,0 +1,6 @@
+Ensure auditing is configured for Docker files and directories - /etc/docker|||auditctl -l | grep /etc/docker|||/etc/docker|||1
+Ensure auditing is configured for Docker files and directories - /etc/default/docker|||auditctl -l | grep /etc/default/docker|||/etc/default/docker|||1
+Ensure auditing is configured for Docker files and directories - /etc/docker/daemon.json|||auditctl -l | grep /etc/docker/daemon.json|||/etc/docker/daemon.json|||1
+Ensure auditing is configured for Docker files and directories - /etc/containerd/config.toml|||auditctl -l | grep /etc/containerd/config.toml|||/etc/containerd/config.toml|||1
+Ensure auditing is configured for Docker files and directories - /etc/sysconfig/docker|||auditctl -l | grep /etc/sysconfig/docker|||/etc/sysconfig/docker|||1
+Ensure auditing is configured for Docker files and directories - /usr/bin/containerd|||auditctl -l | grep /usr/bin/containerd|||/usr/bin/containerd|||1

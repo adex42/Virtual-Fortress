@@ -1,0 +1,4 @@
+Ensure auditing is configured for the Docker daemon|||auditctl -l | grep /usr/bin/dockerd
+Ensure that /etc/docker directory permissions are set to 755 or more restrictively|||stat -c %a /etc/docker
+Ensure that the Docker socket file permissions are set to 660 or more restrictively|||stat -c %a /var/run/docker.sock
+Ensure that the Containerd socket file permissions are set to 660 or more restrictively|||stat -c %a /run/containerd/containerd.sock

@@ -1,0 +1,20 @@
+Ensure re-authentication for privilege escalation is not disabled globally|||grep -r "^[^#].*\!authenticate" /etc/sudoers*|||!authenticate|||1
+Ensure the audit configuration is immutable|||grep -Ph -- '^\h*-e\h+2\b' /etc/audit/rules.d/*.rules | tail -1|||-e 2|||1
+Ensure sudo commands use pty|||grep -rPi '^\h*Defaults\h+([^#\n\r]+,)?use_pty(,\h*\h+\h*)*\h*(#.*)?$' /etc/sudoers*|||/etc/sudoers:Defaults	use_pty|||1
+Ensure rsyslog default file permissions are configured|||grep ^\$FileCreateMode /etc/rsyslog.conf /etc/rsyslog.d/*.conf|||$FileCreateMode 0640|||1
+Ensure SSH warning banner is configured|||sshd -T -C user=root -C host="$(hostname)" -C addr="$(grep $(hostname) /etc/hosts | awk '{print $1}')" | grep banner|||banner /etc/issue.net|||1
+Ensure sudo log file exists|||grep -rPsi "^\h*Defaults\h+([^#]+,\h*)?logfile\h*=\h*(\"|\')?\H+(\"|\')?(,\h*\H+\h*)*\h*(#.*)?$" /etc/sudoers*|||Defaults logfile="/var/log/sudo.log|||1
+Ensure ufw default deny firewall policy|||ufw status verbose | grep Default:|||deny (incoming), deny (outgoing), disabled (routed)|||1
+Ensure SSH MaxStartups is configured|||sshd -T -C user=root -C host="$(hostname)" -C addr="$(grep $(hostname) /etc/hosts | awk '{print $1}')" | grep -i maxstartups|||maxstartups 10:30:60|||1
+Ensure SSH root login is disabled|||grep -Ei '^\s*PermitRootLogin\s+no' /etc/ssh/sshd_config|||no|||1
+Ensure password reuse is limited|||grep -P '^\h*password\h+([^#\n\r]+\h+)?pam_unix\.so\h+([^#\n\r]+\h+)?remember=([5-9]|[1-9][0-9]+)\b' /etc/pam.d/common-password|||password [success=1 default=ignore] pam_unix.so obscure use_authtok try_first_pass yescrypt remember=5|||1
+Ensure journald is configured to write logfiles to persistent disk|||grep ^\s*Storage /etc/systemd/journald.conf|||Storage=persistent|||1
+Ensure auditd service is active|||systemctl is-active auditd|||active|||1
+Ensure journald service is enabled|||systemctl is-enabled systemd-journald.service|||static|||1
+Ensure iptables default deny firewall policy|||iptables -L|||Chain INPUT (policy DROP) Chain FORWARD (policy DROP) Chain OUTPUT (policy DROP)|||1
+Ensure ip6tables default deny firewall policy|||ip6tables -L|||Chain INPUT (policy DROP) Chain FORWARD (policy DROP) Chain OUTPUT (policy DROP)|||1
+Ensure nftables base chains exist|||nft list ruleset | grep 'hook input' ; #nft list ruleset | grep 'hook forward' ; #nft list ruleset | grep 'hook output'|||priority 0|||1
+Ensure nftables default deny firewall policy|||nft list ruleset | grep 'hook input' ; nft list ruleset | grep 'hook forward' ;nft list ruleset | grep 'hook output'|||priority 0|||1
+Ensure default group for the root account is GID 0|||grep "^root:" /etc/passwd | cut -f4 -d:|||0|||1
+Ensure audit logs are not automatically deleted|||grep max_log_file_action /etc/audit/auditd.conf|||max_log_file_action = keep_logs|||1
+Ensure journald is configured to compress large log files|||grep ^\s*Compress /etc/systemd/journald.conf|||Compress=yes|||1

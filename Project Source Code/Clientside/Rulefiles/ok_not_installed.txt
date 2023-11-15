@@ -1,0 +1,27 @@
+Ensure GNOME Display Manager is removed|||dpkg-query -W -f='${binary:Package}\t${Status}\t${db:Status-Status}\n' gdm3
+Ensure nftables is not installed with iptables|||dpkg-query -W -f='${binary:Package}\t${Status}\t${db:Status-Status}\n' nftables
+Ensure prelink is not installed|||dpkg-query -W -f='${binary:Package}\t${Status}\t${db:Status-Status}\n' prelink
+Ensure ufw is uninstalled or disabled with iptables|||dpkg-query -W -f='${binary:Package}\t${Status}\t${db:Status-Status}\n' ufw
+Ensure POP3 server are not installed|||dpkg-query -W -f='${binary:Package}\t${Status}\t${db:Status-Status}\n' dovecot-pop3d
+Ensure HTTP server is not installed|||dpkg-query -W -f='${binary:Package}\t${Status}\t${db:Status-Status}\n' apache2
+Ensure Avahi Server is not installed|||dpkg-query -W -f='${binary:Package}\t${Status}\t${db:Status-Status}\n' avahi-daemon
+Ensure DNS Server is not installed|||dpkg-query -W -f='${binary:Package}\t${Status}\t${db:Status-Status}\n' bind9
+Ensure CUPS is not installed|||dpkg-query -W -f='${binary:Package}\t${Status}\t${db:Status-Status}\n' cups
+Ensure IMAP server are not installed|||dpkg-query -W -f='${binary:Package}\t${Status}\t${db:Status-Status}\n' dovecot-imapd
+Ensure DHCP Server is not installed|||dpkg-query -W -f='${binary:Package}\t${Status}\t${db:Status-Status}\n' iscdhcp-server
+Ensure LDAP client is not installed|||dpkg-query -W -f='${binary:Package}\t${Status}\t${db:Status-Status}\n' ldap-utils
+Ensure NFS is not installed|||dpkg-query -W -f='${binary:Package}\t${Status}\t${db:Status-Status}\n' nfskernel-server
+Ensure NIS Server is not installed|||dpkg-query -W -f='${binary:Package}\t${Status}\t${db:Status-Status}\n' nis
+Ensure NIS Client is not installed|||dpkg-query -W -f='${binary:Package}\t${Status}\t${db:Status-Status}\n' nis
+Ensure RPC is not installed|||dpkg-query -W -f='${binary:Package}\t${Status}\t${db:Status-Status}\n' rpcbind
+Ensure rsh client is not installed|||dpkg-query -W -f='${binary:Package}\t${Status}\t${db:Status-Status}\n' rshclient
+Ensure Samba is not installed|||dpkg-query -W -f='${binary:Package}\t${Status}\t${db:Status-Status}\n' samba
+Ensure LDAP server is not installed|||dpkg-query -W -f='${binary:Package}\t${Status}\t${db:Status-Status}\n' slapd
+Ensure SNMP Server is not installed|||dpkg-query -W -f='${binary:Package}\t${Status}\t${db:Status-Status}\n' snmp
+Ensure HTTP Proxy Server is not installed|||dpkg-query -W -f='${binary:Package}\t${Status}\t${db:Status-Status}\n' squid
+Ensure talk client is not installed|||dpkg-query -W -f='${binary:Package}\t${Status}\t${db:Status-Status}\n' talk
+Ensure telnet client is not installed|||dpkg-query -W -f='${binary:Package}\t${Status}\t${db:Status-Status}\n' telnet
+Ensure FTP Server is not installed|||dpkg-query -W -f='${binary:Package}\t${Status}\t${db:Status-Status}\n' vsftpd
+Ensure rsync service is either not installed or masked|||dpkg-query -W -f='${binary:Package}\t${Status}\t${db:Status-Status}\n' rsync
+Ensure ufw is uninstalled or disabled with nftables|||dpkg-query -s ufw | grep 'Status: install ok installed'
+Ensure iptables-persistent is not installed with ufw|||dpkg-query -s iptables-persistent

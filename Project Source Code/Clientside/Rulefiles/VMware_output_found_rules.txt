@@ -1,0 +1,16 @@
+Ensure the default value of individual salt per vm is configured|||Get-VMHost | Get-AdvancedSetting -Name Mem.ShareForceSalting
+Ensure NTP time synchronization is configured properly|||Get-VMHost | Select Name, @{N="NTPSetting";E={$_ | Get-VMHostNtpServer}}
+Ensure Managed Object Browser (MOB) is disabled|||Get-VMHost | Get-AdvancedSetting -Name Config.HostAgent.plugins.solo.enableMob
+Ensure remote logging is configured for ESXi hosts|||Get-VMHost | Select Name, @{N="Syslog.global.logHost";E={$_ | Get- AdvancedSetting Syslog.global.logHost}}
+Ensure the maximum failed login attempts is set to 5|||Get-VMHost | Get-AdvancedSetting -Name Security.AccountLockFailures
+Ensure account lockout is set to 15 minutes|||Get-VMHost | Get-AdvancedSetting -Name Security.AccountUnlockTime
+Ensure the DCUI timeout is set to 600 seconds or less|||Get-VMHost | Get-AdvancedSetting -Name UserVars.DcuiTimeOut
+Ensure idle ESXi shell and SSH sessions time out after 300 seconds or less|||Get-VMHost | Select Name, @{N="UserVars.ESXiShellInteractiveTimeOut";E={$_ | Get-AdvancedSetting UserVars.ESXiShellInteractiveTimeOut | Select - ExpandProperty Values}}
+Ensure the shell services timeout is set to 1 hour or less|||Get-VMHost | Select Name, @{N="UserVars.ESXiShellTimeOut";E={$_ | Get- AdvancedSettings UserVars.ESXiShellTimeOut | Select -ExpandProperty Values}}
+Ensure bidirectional CHAP authentication for iSCSI traffic is enabled|||Get-VMHost | Get-VMHostHba | Where {$_.Type -eq ""Iscsi""} | Select VMHost, Device, ChapType, @{N=""CHAPName"";E={$_.AuthenticationProperties.ChapName}}
+Ensure port groups are not configured to the value of the native VLAN|||Get-VirtualPortGroup -Standard | Select virtualSwitch, Name, VlanID
+Ensure port groups are not configured to VLAN 4095 except for Virtual Guest Tagging (VGT)|||Get-VirtualPortGroup -Standard | Select virtualSwitch, Name, VlanID
+Ensure informational messages from the VM to the VMX file are limited|||Get-VM | Get-AdvancedSetting -Name "tools.setInfo.sizeLimit" | Select Entity, Name, Value
+Ensure only one remote console connection is permitted to a VM at any time"|||Get-VM | Get-AdvancedSetting -Name "RemoteDisplay.maxConnections" | Select Entity, Name, Value
+Ensure the number of VM log files is configured properly|||Get-VM | Get-AdvancedSetting -Name "log.keepOld"| Select Entity, Name, Value
+Ensure VM log file size is limited|||Get-VM | Get-AdvancedSetting -Name "log.rotateSize"| Select Entity, Name, Value

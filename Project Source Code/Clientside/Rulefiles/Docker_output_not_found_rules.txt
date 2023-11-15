@@ -1,0 +1,11 @@
+Ensure auditing is configured for Docker files and directories - /run/containerd|||auditctl -l | grep /run/containerd
+Ensure auditing is configured for Docker files and directories - docker.service|||systemctl show -p FragmentPath docker.service
+Ensure auditing is configured for Docker files and directories - containerd.sock|||grep 'containerd.sock' /etc/containerd/config.toml
+Ensure auditing is configured for Docker files and directories - docker.socket|||systemctl show -p FragmentPath docker.socket
+Ensure that docker.service file permissions are appropriately set|||stat -c %a /usr/lib/systemd/system/docker.service
+Ensure that docker.socket file ownership is set to root:root|||systemctl show -p FragmentPath docker.socket
+Ensure that docker.socket file permissions are set to 644 or more restrictive|||systemctl show -p FragmentPath docker.socket
+Ensure that the /etc/docker directory ownership is set to root:root|||stat -c %U:%G /etc/docker | grep -v root:root
+Ensure that the Docker socket file ownership is set to root:docker|||stat -c %U:%G /var/run/docker.sock | grep -v root:docker
+Ensure that the Containerd socket file ownership is set to root:root|||stat -c %U:%G /run/containerd/containerd.sock | grep -v root:root
+Ensure that the docker.service file ownership is set to root:root|||systemctl show -p FragmentPath docker.service

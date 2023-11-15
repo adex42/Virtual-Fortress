@@ -1,0 +1,8 @@
+Ensure nftables is installed|||dpkg-query -s nftables | grep 'Status: install ok installed'
+Ensure AppArmor is installed|||dpkg-query -W -f='${binary:Package}\t${Status}\t${db:Status-Status}\n' apparmor
+Ensure rsyslog is installed|||dpkg-query -W -f='${binary:Package}\t${Status}\t${db:Status-Status}\n' rsyslog
+Ensure systemd-journal-remote is installed|||dpkg-query -W -f='${binary:Package}\t${Status}\t${db:Status-Status}\n' systemd-journal-remote
+Ensure ufw is installed|||dpkg-query -W -f='${binary:Package}\t${Status}\t${db:Status-Status}\n' ufw
+Check if AIDE is installed|||dpkg-query -W -f='${binary:Package}\t${Status}\t${db:Status-Status}\n' aide
+Ensure auditd plugin is installed|||dpkg-query -W -f='${binary:Package}\t${Status}\t${db:Status-Status}\n'  audispd-plugins
+Ensure auditd is installed|||dpkg-query -W -f='${binary:Package}\t${Status}\t${db:Status-Status}\n' auditd
