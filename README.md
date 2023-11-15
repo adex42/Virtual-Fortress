@@ -35,7 +35,6 @@ Install the server side application by using the reqirements file in the server 
 ```bash
 pip install -r requirements.txt
 ```
-## Demo
 
 ## Documentation
 
@@ -52,5 +51,27 @@ pip install -r requirements.txt
 
 
 ## Screenshots
+![image](https://github.com/adex42/Virtual-Fortress/assets/87116411/0cfe270b-0a5a-415e-b050-f50d5fdfdab1)
+Registering a new user
+
+![image](https://github.com/adex42/Virtual-Fortress/assets/87116411/97c55db4-07ab-4c12-b69d-5207618bb3c0)
+Logging In
+
+![image](https://github.com/adex42/Virtual-Fortress/assets/87116411/6df85952-c9b3-45c5-a2fd-71a854a28fae)
+Dashboard
+
+![image](https://github.com/adex42/Virtual-Fortress/assets/87116411/8e1e12e2-8465-4438-8638-a03841e23ec0)
+Scanning for a single device
+
+![image](https://github.com/adex42/Virtual-Fortress/assets/87116411/79d5c983-6d67-4817-a2db-5afad36925ca)
+Scanning devices in am IP range
+
+![image](https://github.com/adex42/Virtual-Fortress/assets/87116411/b618b0ad-a5b5-4d26-ad20-16454671f806)
+Generated report
+
+
+
+
+
 
 
